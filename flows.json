@@ -1,0 +1,403 @@
+[
+    {
+        "id": "f8992ac9062d38bc",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "5483cf2b39f465c4",
+        "type": "subflow",
+        "name": "Модуль",
+        "info": "",
+        "category": "",
+        "in": [],
+        "out": [],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "bddf56a2e57b8f8b",
+        "type": "ui_tab",
+        "name": "TestTab",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "671edabea57ef9ab",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "8df0734b3db335d2",
+        "type": "ui_group",
+        "name": "Stand 4",
+        "tab": "bddf56a2e57b8f8b",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "af028312b459fcde",
+        "type": "mqtt-broker",
+        "name": "local mosquitto",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "681f1a73169dbe80",
+        "type": "ui_group",
+        "name": "Stand 3",
+        "tab": "bddf56a2e57b8f8b",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "fcd57260ade6d1fc",
+        "type": "sqlitedb",
+        "db": "/home/pi/logs.db",
+        "mode": "RWC"
+    },
+    {
+        "id": "e109730eb7a41d4b",
+        "type": "ui_text",
+        "z": "f8992ac9062d38bc",
+        "group": "681f1a73169dbe80",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Влажность",
+        "format": "{{msg.payload}} %",
+        "layout": "row-spread",
+        "className": "",
+        "x": 570,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "c7030ca11b66d026",
+        "type": "mqtt in",
+        "z": "f8992ac9062d38bc",
+        "name": "",
+        "topic": "/class/stand3/humidity",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "af028312b459fcde",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 250,
+        "y": 380,
+        "wires": [
+            [
+                "e109730eb7a41d4b"
+            ]
+        ]
+    },
+    {
+        "id": "f4289ab51d47d958",
+        "type": "ui_text",
+        "z": "f8992ac9062d38bc",
+        "group": "8df0734b3db335d2",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Влажность",
+        "format": "{{msg.payload}} %",
+        "layout": "row-spread",
+        "className": "",
+        "x": 570,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "ea1e172332e31190",
+        "type": "mqtt in",
+        "z": "f8992ac9062d38bc",
+        "name": "",
+        "topic": "/class/stand4/humidity",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "af028312b459fcde",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 250,
+        "y": 420,
+        "wires": [
+            [
+                "f4289ab51d47d958"
+            ]
+        ]
+    },
+    {
+        "id": "13d65019c7700858",
+        "type": "inject",
+        "z": "f8992ac9062d38bc",
+        "name": "",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "/class/stand3/commands",
+        "payload": "do",
+        "payloadType": "str",
+        "x": 220,
+        "y": 600,
+        "wires": [
+            [
+                "e0dceeb7c153393e"
+            ]
+        ]
+    },
+    {
+        "id": "e0dceeb7c153393e",
+        "type": "mqtt out",
+        "z": "f8992ac9062d38bc",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "af028312b459fcde",
+        "x": 630,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "5fdb75a71ecf9a28",
+        "type": "inject",
+        "z": "f8992ac9062d38bc",
+        "name": "",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "/class/stand4/commands",
+        "payload": "do",
+        "payloadType": "str",
+        "x": 220,
+        "y": 640,
+        "wires": [
+            [
+                "e0dceeb7c153393e"
+            ]
+        ]
+    },
+    {
+        "id": "f5b0e87861aa930e",
+        "type": "ui_button",
+        "z": "f8992ac9062d38bc",
+        "name": "",
+        "group": "681f1a73169dbe80",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Запустить полив",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "do",
+        "payloadType": "str",
+        "topic": "/class/stand3/commands",
+        "topicType": "str",
+        "x": 470,
+        "y": 560,
+        "wires": [
+            [
+                "e0dceeb7c153393e"
+            ]
+        ]
+    },
+    {
+        "id": "bd33f7e0d4f0d527",
+        "type": "ui_button",
+        "z": "f8992ac9062d38bc",
+        "name": "",
+        "group": "8df0734b3db335d2",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Запустить полив",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "do",
+        "payloadType": "str",
+        "topic": "/class/stand4/commands",
+        "topicType": "str",
+        "x": 470,
+        "y": 680,
+        "wires": [
+            [
+                "e0dceeb7c153393e"
+            ]
+        ]
+    },
+    {
+        "id": "62bb29366b1ad8c9",
+        "type": "sqlite",
+        "z": "f8992ac9062d38bc",
+        "mydb": "fcd57260ade6d1fc",
+        "sqlquery": "prepared",
+        "sql": "",
+        "name": "",
+        "x": 790,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    }
+]
