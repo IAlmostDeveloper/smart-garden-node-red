@@ -8,18 +8,6 @@
         "env": []
     },
     {
-        "id": "5483cf2b39f465c4",
-        "type": "subflow",
-        "name": "Модуль",
-        "info": "",
-        "category": "",
-        "in": [],
-        "out": [],
-        "env": [],
-        "meta": {},
-        "color": "#DDAA99"
-    },
-    {
         "id": "94e62e183018d373",
         "type": "subflow",
         "name": "Получение текущей даты",
@@ -162,7 +150,7 @@
         "type": "ui_group",
         "name": "Stand 4",
         "tab": "bddf56a2e57b8f8b",
-        "order": 2,
+        "order": 4,
         "disp": true,
         "width": "6",
         "collapse": false,
@@ -195,21 +183,43 @@
         "sessionExpiry": ""
     },
     {
+        "id": "fcd57260ade6d1fc",
+        "type": "sqlitedb",
+        "db": "/home/pi/logs.db",
+        "mode": "RWC"
+    },
+    {
         "id": "681f1a73169dbe80",
         "type": "ui_group",
         "name": "Stand 3",
         "tab": "bddf56a2e57b8f8b",
-        "order": 1,
+        "order": 3,
         "disp": true,
         "width": "6",
         "collapse": false,
         "className": ""
     },
     {
-        "id": "fcd57260ade6d1fc",
-        "type": "sqlitedb",
-        "db": "/home/pi/logs.db",
-        "mode": "RWC"
+        "id": "838a47f955b9bd11",
+        "type": "ui_group",
+        "name": "Stand 2",
+        "tab": "bddf56a2e57b8f8b",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "1fe02db6eacf92df",
+        "type": "ui_group",
+        "name": "Stand 1",
+        "tab": "bddf56a2e57b8f8b",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "6018a8e9065295cf",
@@ -264,10 +274,10 @@
         "name": "3 стенд - Показания датчика",
         "label": "Влажность:",
         "format": "{{msg.payload}} %",
-        "layout": "row-spread",
+        "layout": "row-left",
         "className": "",
-        "x": 230,
-        "y": 280,
+        "x": 210,
+        "y": 320,
         "wires": []
     },
     {
@@ -283,12 +293,15 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 220,
-        "y": 240,
+        "x": 200,
+        "y": 280,
         "wires": [
             [
                 "e109730eb7a41d4b",
-                "1b464ac1c6fdfc3a"
+                "1b464ac1c6fdfc3a",
+                "43ace6977ae61d56",
+                "9ac5505ff448e6ee",
+                "9826b714d093686c"
             ]
         ]
     },
@@ -303,10 +316,10 @@
         "name": "4 стенд - Показания датчика",
         "label": "Влажность:",
         "format": "{{msg.payload}} %",
-        "layout": "row-spread",
+        "layout": "row-left",
         "className": "",
-        "x": 230,
-        "y": 400,
+        "x": 210,
+        "y": 440,
         "wires": []
     },
     {
@@ -322,12 +335,15 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 210,
-        "y": 360,
+        "x": 190,
+        "y": 400,
         "wires": [
             [
                 "f4289ab51d47d958",
-                "1b464ac1c6fdfc3a"
+                "1b464ac1c6fdfc3a",
+                "86813fa2ce66254a",
+                "f2fc9041fe8ce528",
+                "59de3258bab4aa9c"
             ]
         ]
     },
@@ -353,7 +369,7 @@
         "payload": "do",
         "payloadType": "str",
         "x": 210,
-        "y": 640,
+        "y": 840,
         "wires": [
             [
                 "28a85f0db8080480"
@@ -374,8 +390,8 @@
         "correl": "",
         "expiry": "",
         "broker": "af028312b459fcde",
-        "x": 1140,
-        "y": 620,
+        "x": 960,
+        "y": 760,
         "wires": []
     },
     {
@@ -400,7 +416,7 @@
         "payload": "do",
         "payloadType": "str",
         "x": 210,
-        "y": 680,
+        "y": 880,
         "wires": [
             [
                 "28a85f0db8080480"
@@ -411,13 +427,13 @@
         "id": "f5b0e87861aa930e",
         "type": "ui_button",
         "z": "f8992ac9062d38bc",
-        "name": "",
+        "name": "3 стенд - Запустить полив",
         "group": "681f1a73169dbe80",
         "order": 2,
         "width": 0,
         "height": 0,
         "passthru": false,
-        "label": "3 стенд - Запустить полив",
+        "label": "Запустить полив",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
@@ -427,8 +443,8 @@
         "payloadType": "str",
         "topic": "/class/stand3/commands",
         "topicType": "str",
-        "x": 220,
-        "y": 520,
+        "x": 200,
+        "y": 680,
         "wires": [
             [
                 "28a85f0db8080480"
@@ -439,13 +455,13 @@
         "id": "bd33f7e0d4f0d527",
         "type": "ui_button",
         "z": "f8992ac9062d38bc",
-        "name": "",
+        "name": "4 стенд - Запустить полив",
         "group": "8df0734b3db335d2",
         "order": 2,
         "width": 0,
         "height": 0,
         "passthru": false,
-        "label": "4 стенд - Запустить полив",
+        "label": "Запустить полив",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
@@ -455,8 +471,8 @@
         "payloadType": "str",
         "topic": "/class/stand4/commands",
         "topicType": "str",
-        "x": 220,
-        "y": 560,
+        "x": 200,
+        "y": 720,
         "wires": [
             [
                 "28a85f0db8080480"
@@ -471,7 +487,7 @@
         "sqlquery": "fixed",
         "sql": "CREATE TABLE Logs (\nid integer primary key autoincrement,\ntopic text,\nmessage text,\nupdated_date text\n);",
         "name": "",
-        "x": 360,
+        "x": 1320,
         "y": 80,
         "wires": [
             []
@@ -488,7 +504,7 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 380,
+        "x": 1340,
         "y": 40,
         "wires": [
             [
@@ -504,8 +520,8 @@
         "sqlquery": "fixed",
         "sql": "DROP TABLE Logs;",
         "name": "",
-        "x": 780,
-        "y": 80,
+        "x": 1500,
+        "y": 140,
         "wires": [
             []
         ]
@@ -521,8 +537,8 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 810,
-        "y": 40,
+        "x": 1530,
+        "y": 100,
         "wires": [
             [
                 "b63aba6dd44c53c6"
@@ -537,8 +553,8 @@
         "sqlquery": "msg.topic",
         "sql": "",
         "name": "",
-        "x": 1200,
-        "y": 420,
+        "x": 1000,
+        "y": 200,
         "wires": [
             []
         ]
@@ -554,11 +570,11 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 760,
-        "y": 660,
+        "x": 620,
+        "y": 800,
         "wires": [
             [
-                "d328e2480bf626c9"
+                "559b86fffd420ad8"
             ]
         ]
     },
@@ -567,8 +583,8 @@
         "type": "subflow:94e62e183018d373",
         "z": "f8992ac9062d38bc",
         "name": "",
-        "x": 750,
-        "y": 620,
+        "x": 610,
+        "y": 760,
         "wires": [
             [
                 "e0dceeb7c153393e",
@@ -582,7 +598,7 @@
         "z": "f8992ac9062d38bc",
         "name": "",
         "x": 730,
-        "y": 280,
+        "y": 160,
         "wires": [
             [
                 "4d606e11b56797ce"
@@ -601,7 +617,7 @@
         "finalize": "",
         "libs": [],
         "x": 750,
-        "y": 320,
+        "y": 200,
         "wires": [
             [
                 "d328e2480bf626c9"
@@ -619,10 +635,10 @@
         "name": "3 стенд - Статус",
         "label": "Статус:",
         "format": "{{msg.payload}}",
-        "layout": "row-spread",
+        "layout": "row-left",
         "className": "",
-        "x": 630,
-        "y": 440,
+        "x": 1210,
+        "y": 520,
         "wires": []
     },
     {
@@ -636,10 +652,862 @@
         "name": "4 стенд - Статус",
         "label": "Статус:",
         "format": "{{msg.payload}}",
-        "layout": "row-spread",
+        "layout": "row-left",
         "className": "",
-        "x": 620,
-        "y": 480,
+        "x": 1210,
+        "y": 620,
         "wires": []
+    },
+    {
+        "id": "43ace6977ae61d56",
+        "type": "ui_chart",
+        "z": "f8992ac9062d38bc",
+        "name": "3 стенд - Часовой график",
+        "group": "681f1a73169dbe80",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "Часовой график",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 200,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "86813fa2ce66254a",
+        "type": "ui_chart",
+        "z": "f8992ac9062d38bc",
+        "name": "4 стенд - Часовой график",
+        "group": "8df0734b3db335d2",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "Часовой график",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 200,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7351bc3bbba91959",
+        "type": "delay",
+        "z": "f8992ac9062d38bc",
+        "name": "ждем",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 810,
+        "y": 520,
+        "wires": [
+            [
+                "702d2bc530dd602a"
+            ]
+        ]
+    },
+    {
+        "id": "9ac5505ff448e6ee",
+        "type": "function",
+        "z": "f8992ac9062d38bc",
+        "name": "3 стенд - Хелсчек",
+        "func": "msg.reset = true;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 520,
+        "wires": [
+            [
+                "7351bc3bbba91959"
+            ]
+        ]
+    },
+    {
+        "id": "f2fc9041fe8ce528",
+        "type": "function",
+        "z": "f8992ac9062d38bc",
+        "name": "4 стенд - Хелсчек",
+        "func": "msg.delay = 60;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 580,
+        "wires": [
+            [
+                "eed97136a342ef2f"
+            ]
+        ]
+    },
+    {
+        "id": "eed97136a342ef2f",
+        "type": "delay",
+        "z": "f8992ac9062d38bc",
+        "name": "ждем",
+        "pauseType": "delayv",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 810,
+        "y": 580,
+        "wires": [
+            [
+                "99babf0103635965"
+            ]
+        ]
+    },
+    {
+        "id": "702d2bc530dd602a",
+        "type": "change",
+        "z": "f8992ac9062d38bc",
+        "name": "Стенд недоступен",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Недоступен",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 990,
+        "y": 520,
+        "wires": [
+            [
+                "ca7d986c41720c31"
+            ]
+        ]
+    },
+    {
+        "id": "15f30dd105de1920",
+        "type": "trigger",
+        "z": "f8992ac9062d38bc",
+        "name": "",
+        "op1": "",
+        "op2": "0",
+        "op1type": "pay",
+        "op2type": "str",
+        "duration": "-10",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 630,
+        "y": 640,
+        "wires": [
+            [
+                "eed97136a342ef2f",
+                "7351bc3bbba91959",
+                "e21eec43c0fc657d",
+                "6776debb0710b5c8"
+            ]
+        ]
+    },
+    {
+        "id": "9826b714d093686c",
+        "type": "change",
+        "z": "f8992ac9062d38bc",
+        "name": "Стенд работает",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Работает",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1200,
+        "y": 480,
+        "wires": [
+            [
+                "ca7d986c41720c31"
+            ]
+        ]
+    },
+    {
+        "id": "99babf0103635965",
+        "type": "change",
+        "z": "f8992ac9062d38bc",
+        "name": "Стенд недоступен",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Недоступен",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 990,
+        "y": 580,
+        "wires": [
+            [
+                "e44a2526ed13f12f"
+            ]
+        ]
+    },
+    {
+        "id": "59de3258bab4aa9c",
+        "type": "change",
+        "z": "f8992ac9062d38bc",
+        "name": "Стенд работает",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Работает",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1200,
+        "y": 580,
+        "wires": [
+            [
+                "e44a2526ed13f12f"
+            ]
+        ]
+    },
+    {
+        "id": "408451b26defecc4",
+        "type": "start-up-trigger",
+        "z": "f8992ac9062d38bc",
+        "x": 620,
+        "y": 680,
+        "wires": [
+            [
+                "15f30dd105de1920"
+            ]
+        ]
+    },
+    {
+        "id": "559b86fffd420ad8",
+        "type": "sqlite",
+        "z": "f8992ac9062d38bc",
+        "mydb": "fcd57260ade6d1fc",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 660,
+        "y": 840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b8c15e239fd929f1",
+        "type": "ui_text",
+        "z": "f8992ac9062d38bc",
+        "group": "838a47f955b9bd11",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "2 стенд - Показания датчика",
+        "label": "Влажность:",
+        "format": "{{msg.payload}} %",
+        "layout": "row-left",
+        "className": "",
+        "x": 210,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "e73d505f22d1c792",
+        "type": "mqtt in",
+        "z": "f8992ac9062d38bc",
+        "name": "2 стенд - Показания из mqtt",
+        "topic": "/class/stand2/humidity",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "af028312b459fcde",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 200,
+        "y": 160,
+        "wires": [
+            [
+                "b8c15e239fd929f1",
+                "47b317123461fe9d",
+                "223234e8fa14b745",
+                "5d9d07623dbf77f7"
+            ]
+        ]
+    },
+    {
+        "id": "8723a8d9e01e61b9",
+        "type": "ui_text",
+        "z": "f8992ac9062d38bc",
+        "group": "1fe02db6eacf92df",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "1 стенд - Показания датчика",
+        "label": "Влажность:",
+        "format": "{{msg.payload}} %",
+        "layout": "row-left",
+        "className": "",
+        "x": 210,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "cfdca87c9d400804",
+        "type": "mqtt in",
+        "z": "f8992ac9062d38bc",
+        "name": "1 стенд - Показания из mqtt",
+        "topic": "/class/stand1/humidity",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "af028312b459fcde",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 200,
+        "y": 40,
+        "wires": [
+            [
+                "8723a8d9e01e61b9",
+                "2145c9f8e45c7915",
+                "864ac43c561c3321",
+                "51f74f8809fde08c"
+            ]
+        ]
+    },
+    {
+        "id": "681ccc02cd401c92",
+        "type": "ui_button",
+        "z": "f8992ac9062d38bc",
+        "name": "2 стенд - Запустить полив",
+        "group": "838a47f955b9bd11",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Запустить полив",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "do",
+        "payloadType": "str",
+        "topic": "/class/stand2/commands",
+        "topicType": "str",
+        "x": 200,
+        "y": 640,
+        "wires": [
+            [
+                "28a85f0db8080480"
+            ]
+        ]
+    },
+    {
+        "id": "2603f7c0464f3383",
+        "type": "ui_button",
+        "z": "f8992ac9062d38bc",
+        "name": "1 стенд - Запустить полив",
+        "group": "1fe02db6eacf92df",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Запустить полив",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "do",
+        "payloadType": "str",
+        "topic": "/class/stand1/commands",
+        "topicType": "str",
+        "x": 200,
+        "y": 600,
+        "wires": [
+            [
+                "28a85f0db8080480"
+            ]
+        ]
+    },
+    {
+        "id": "90ddd03790c753af",
+        "type": "inject",
+        "z": "f8992ac9062d38bc",
+        "name": "1 стенд - Запустить полив",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "/class/stand1/commands",
+        "payload": "do",
+        "payloadType": "str",
+        "x": 210,
+        "y": 760,
+        "wires": [
+            [
+                "28a85f0db8080480"
+            ]
+        ]
+    },
+    {
+        "id": "255fcfaa027adc97",
+        "type": "inject",
+        "z": "f8992ac9062d38bc",
+        "name": "2 стенд - Запустить полив",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            },
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "/class/stand2/commands",
+        "payload": "do",
+        "payloadType": "str",
+        "x": 210,
+        "y": 800,
+        "wires": [
+            [
+                "28a85f0db8080480"
+            ]
+        ]
+    },
+    {
+        "id": "47b317123461fe9d",
+        "type": "ui_chart",
+        "z": "f8992ac9062d38bc",
+        "name": "2 стенд - Часовой график",
+        "group": "838a47f955b9bd11",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "Часовой график",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 200,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2145c9f8e45c7915",
+        "type": "ui_chart",
+        "z": "f8992ac9062d38bc",
+        "name": "1 стенд - Часовой график",
+        "group": "1fe02db6eacf92df",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "Часовой график",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 200,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b62aa6369d667aae",
+        "type": "ui_text",
+        "z": "f8992ac9062d38bc",
+        "group": "1fe02db6eacf92df",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "1 стенд - Статус",
+        "label": "Статус:",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 1210,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "e6ecbe93abd60c0c",
+        "type": "ui_text",
+        "z": "f8992ac9062d38bc",
+        "group": "838a47f955b9bd11",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "2 стенд - Статус",
+        "label": "Статус:",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "className": "",
+        "x": 1210,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "e21eec43c0fc657d",
+        "type": "delay",
+        "z": "f8992ac9062d38bc",
+        "name": "ждем",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 810,
+        "y": 320,
+        "wires": [
+            [
+                "291abc24025a0c73"
+            ]
+        ]
+    },
+    {
+        "id": "864ac43c561c3321",
+        "type": "function",
+        "z": "f8992ac9062d38bc",
+        "name": "1 стенд - Хелсчек",
+        "func": "msg.reset = true;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 320,
+        "wires": [
+            [
+                "e21eec43c0fc657d"
+            ]
+        ]
+    },
+    {
+        "id": "223234e8fa14b745",
+        "type": "function",
+        "z": "f8992ac9062d38bc",
+        "name": "2 стенд - Хелсчек",
+        "func": "msg.delay = 60;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 380,
+        "wires": [
+            [
+                "6776debb0710b5c8"
+            ]
+        ]
+    },
+    {
+        "id": "6776debb0710b5c8",
+        "type": "delay",
+        "z": "f8992ac9062d38bc",
+        "name": "ждем",
+        "pauseType": "delayv",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 810,
+        "y": 380,
+        "wires": [
+            [
+                "acfb74463b3432a6"
+            ]
+        ]
+    },
+    {
+        "id": "291abc24025a0c73",
+        "type": "change",
+        "z": "f8992ac9062d38bc",
+        "name": "Стенд недоступен",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Недоступен",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 990,
+        "y": 320,
+        "wires": [
+            [
+                "b62aa6369d667aae"
+            ]
+        ]
+    },
+    {
+        "id": "51f74f8809fde08c",
+        "type": "change",
+        "z": "f8992ac9062d38bc",
+        "name": "Стенд работает",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Работает",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1200,
+        "y": 280,
+        "wires": [
+            [
+                "b62aa6369d667aae"
+            ]
+        ]
+    },
+    {
+        "id": "acfb74463b3432a6",
+        "type": "change",
+        "z": "f8992ac9062d38bc",
+        "name": "Стенд недоступен",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Недоступен",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 990,
+        "y": 380,
+        "wires": [
+            [
+                "e6ecbe93abd60c0c"
+            ]
+        ]
+    },
+    {
+        "id": "5d9d07623dbf77f7",
+        "type": "change",
+        "z": "f8992ac9062d38bc",
+        "name": "Стенд работает",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Работает",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1200,
+        "y": 380,
+        "wires": [
+            [
+                "e6ecbe93abd60c0c"
+            ]
+        ]
     }
 ]
