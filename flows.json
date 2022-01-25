@@ -20,6 +20,39 @@
         "color": "#DDAA99"
     },
     {
+        "id": "94e62e183018d373",
+        "type": "subflow",
+        "name": "Получение текущей даты",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 240,
+                "y": 260,
+                "wires": [
+                    {
+                        "id": "f046bcdd24f290a7"
+                    }
+                ]
+            }
+        ],
+        "out": [
+            {
+                "x": 600,
+                "y": 380,
+                "wires": [
+                    {
+                        "id": "6018a8e9065295cf",
+                        "port": 0
+                    }
+                ]
+            }
+        ],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
         "id": "bddf56a2e57b8f8b",
         "type": "ui_tab",
         "name": "TestTab",
@@ -179,6 +212,48 @@
         "mode": "RWC"
     },
     {
+        "id": "6018a8e9065295cf",
+        "type": "moment",
+        "z": "94e62e183018d373",
+        "name": "форматируем текущую дату и время",
+        "topic": "",
+        "input": "curentDate",
+        "inputType": "msg",
+        "inTz": "Asia/Yekaterinburg",
+        "adjAmount": 0,
+        "adjType": "days",
+        "adjDir": "add",
+        "format": "yyyy-MM-DD HH-mm-ss",
+        "locale": "en-GB",
+        "output": "currentDate",
+        "outputType": "msg",
+        "outTz": "Asia/Yekaterinburg",
+        "x": 430,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f046bcdd24f290a7",
+        "type": "function",
+        "z": "94e62e183018d373",
+        "name": "получаем текущую дату и время",
+        "func": "msg.currentDate = new Date();\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 300,
+        "wires": [
+            [
+                "6018a8e9065295cf"
+            ]
+        ]
+    },
+    {
         "id": "e109730eb7a41d4b",
         "type": "ui_text",
         "z": "f8992ac9062d38bc",
@@ -186,20 +261,20 @@
         "order": 1,
         "width": 0,
         "height": 0,
-        "name": "",
-        "label": "Влажность",
+        "name": "3 стенд - Показания датчика",
+        "label": "Влажность:",
         "format": "{{msg.payload}} %",
         "layout": "row-spread",
         "className": "",
-        "x": 570,
-        "y": 340,
+        "x": 230,
+        "y": 280,
         "wires": []
     },
     {
         "id": "c7030ca11b66d026",
         "type": "mqtt in",
         "z": "f8992ac9062d38bc",
-        "name": "",
+        "name": "3 стенд - Показания из mqtt",
         "topic": "/class/stand3/humidity",
         "qos": "2",
         "datatype": "auto",
@@ -208,11 +283,12 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 250,
-        "y": 380,
+        "x": 220,
+        "y": 240,
         "wires": [
             [
-                "e109730eb7a41d4b"
+                "e109730eb7a41d4b",
+                "1b464ac1c6fdfc3a"
             ]
         ]
     },
@@ -224,20 +300,20 @@
         "order": 1,
         "width": 0,
         "height": 0,
-        "name": "",
-        "label": "Влажность",
+        "name": "4 стенд - Показания датчика",
+        "label": "Влажность:",
         "format": "{{msg.payload}} %",
         "layout": "row-spread",
         "className": "",
-        "x": 570,
-        "y": 380,
+        "x": 230,
+        "y": 400,
         "wires": []
     },
     {
         "id": "ea1e172332e31190",
         "type": "mqtt in",
         "z": "f8992ac9062d38bc",
-        "name": "",
+        "name": "4 стенд - Показания из mqtt",
         "topic": "/class/stand4/humidity",
         "qos": "2",
         "datatype": "auto",
@@ -246,11 +322,12 @@
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 250,
-        "y": 420,
+        "x": 210,
+        "y": 360,
         "wires": [
             [
-                "f4289ab51d47d958"
+                "f4289ab51d47d958",
+                "1b464ac1c6fdfc3a"
             ]
         ]
     },
@@ -258,7 +335,7 @@
         "id": "13d65019c7700858",
         "type": "inject",
         "z": "f8992ac9062d38bc",
-        "name": "",
+        "name": "3 стенд - Запустить полив",
         "props": [
             {
                 "p": "topic",
@@ -275,11 +352,11 @@
         "topic": "/class/stand3/commands",
         "payload": "do",
         "payloadType": "str",
-        "x": 220,
-        "y": 600,
+        "x": 210,
+        "y": 640,
         "wires": [
             [
-                "e0dceeb7c153393e"
+                "28a85f0db8080480"
             ]
         ]
     },
@@ -287,7 +364,7 @@
         "id": "e0dceeb7c153393e",
         "type": "mqtt out",
         "z": "f8992ac9062d38bc",
-        "name": "",
+        "name": "бросаем сообщение mqtt брокеру",
         "topic": "",
         "qos": "",
         "retain": "",
@@ -297,7 +374,7 @@
         "correl": "",
         "expiry": "",
         "broker": "af028312b459fcde",
-        "x": 630,
+        "x": 1140,
         "y": 620,
         "wires": []
     },
@@ -305,7 +382,7 @@
         "id": "5fdb75a71ecf9a28",
         "type": "inject",
         "z": "f8992ac9062d38bc",
-        "name": "",
+        "name": "4 стенд - Запустить полив",
         "props": [
             {
                 "p": "topic",
@@ -322,11 +399,11 @@
         "topic": "/class/stand4/commands",
         "payload": "do",
         "payloadType": "str",
-        "x": 220,
-        "y": 640,
+        "x": 210,
+        "y": 680,
         "wires": [
             [
-                "e0dceeb7c153393e"
+                "28a85f0db8080480"
             ]
         ]
     },
@@ -340,7 +417,7 @@
         "width": 0,
         "height": 0,
         "passthru": false,
-        "label": "Запустить полив",
+        "label": "3 стенд - Запустить полив",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
@@ -350,11 +427,11 @@
         "payloadType": "str",
         "topic": "/class/stand3/commands",
         "topicType": "str",
-        "x": 470,
-        "y": 560,
+        "x": 220,
+        "y": 520,
         "wires": [
             [
-                "e0dceeb7c153393e"
+                "28a85f0db8080480"
             ]
         ]
     },
@@ -368,7 +445,7 @@
         "width": 0,
         "height": 0,
         "passthru": false,
-        "label": "Запустить полив",
+        "label": "4 стенд - Запустить полив",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
@@ -378,11 +455,11 @@
         "payloadType": "str",
         "topic": "/class/stand4/commands",
         "topicType": "str",
-        "x": 470,
-        "y": 680,
+        "x": 220,
+        "y": 560,
         "wires": [
             [
-                "e0dceeb7c153393e"
+                "28a85f0db8080480"
             ]
         ]
     },
@@ -391,13 +468,178 @@
         "type": "sqlite",
         "z": "f8992ac9062d38bc",
         "mydb": "fcd57260ade6d1fc",
-        "sqlquery": "prepared",
-        "sql": "",
+        "sqlquery": "fixed",
+        "sql": "CREATE TABLE Logs (\nid integer primary key autoincrement,\ntopic text,\nmessage text,\nupdated_date text\n);",
         "name": "",
-        "x": 790,
-        "y": 440,
+        "x": 360,
+        "y": 80,
         "wires": [
             []
         ]
+    },
+    {
+        "id": "cb73263825cdece2",
+        "type": "inject",
+        "z": "f8992ac9062d38bc",
+        "name": "создать таблицу логов",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 380,
+        "y": 40,
+        "wires": [
+            [
+                "62bb29366b1ad8c9"
+            ]
+        ]
+    },
+    {
+        "id": "b63aba6dd44c53c6",
+        "type": "sqlite",
+        "z": "f8992ac9062d38bc",
+        "mydb": "fcd57260ade6d1fc",
+        "sqlquery": "fixed",
+        "sql": "DROP TABLE Logs;",
+        "name": "",
+        "x": 780,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "39cde175c722ecbc",
+        "type": "inject",
+        "z": "f8992ac9062d38bc",
+        "name": "дропнуть таблицу логов",
+        "props": [],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 810,
+        "y": 40,
+        "wires": [
+            [
+                "b63aba6dd44c53c6"
+            ]
+        ]
+    },
+    {
+        "id": "d328e2480bf626c9",
+        "type": "sqlite",
+        "z": "f8992ac9062d38bc",
+        "mydb": "fcd57260ade6d1fc",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 1200,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "eb83399561ee5a12",
+        "type": "function",
+        "z": "f8992ac9062d38bc",
+        "name": "логируем команду полива",
+        "func": "msg.topic = `\ninsert into Logs (topic, message, updated_date) \nvalues('${msg.topic}', '${msg.payload}', '${msg.currentDate}')`;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 660,
+        "wires": [
+            [
+                "d328e2480bf626c9"
+            ]
+        ]
+    },
+    {
+        "id": "28a85f0db8080480",
+        "type": "subflow:94e62e183018d373",
+        "z": "f8992ac9062d38bc",
+        "name": "",
+        "x": 750,
+        "y": 620,
+        "wires": [
+            [
+                "e0dceeb7c153393e",
+                "eb83399561ee5a12"
+            ]
+        ]
+    },
+    {
+        "id": "1b464ac1c6fdfc3a",
+        "type": "subflow:94e62e183018d373",
+        "z": "f8992ac9062d38bc",
+        "name": "",
+        "x": 730,
+        "y": 280,
+        "wires": [
+            [
+                "4d606e11b56797ce"
+            ]
+        ]
+    },
+    {
+        "id": "4d606e11b56797ce",
+        "type": "function",
+        "z": "f8992ac9062d38bc",
+        "name": "логируем показания датчика",
+        "func": "msg.topic = `\ninsert into Logs (topic, message, updated_date) \nvalues('${msg.topic}', '${msg.payload}', '${msg.currentDate}')`;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 750,
+        "y": 320,
+        "wires": [
+            [
+                "d328e2480bf626c9"
+            ]
+        ]
+    },
+    {
+        "id": "ca7d986c41720c31",
+        "type": "ui_text",
+        "z": "f8992ac9062d38bc",
+        "group": "681f1a73169dbe80",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "3 стенд - Статус",
+        "label": "Статус:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 630,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "e44a2526ed13f12f",
+        "type": "ui_text",
+        "z": "f8992ac9062d38bc",
+        "group": "8df0734b3db335d2",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "4 стенд - Статус",
+        "label": "Статус:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 620,
+        "y": 480,
+        "wires": []
     }
 ]
